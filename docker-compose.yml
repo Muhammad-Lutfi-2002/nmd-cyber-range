@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  # The vulnerable "Admin Feedback System" — Red Team target.
+  feedback-app:
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+    container_name: feedback-app
+    ports:
+      - "3075:3075"
+    volumes:
+      - admin-logs:/opt/admin/logs
+    networks:
+      - lab-net
+    restart: unless-stopped
+
+  # SSH box for the Blue Team to log in and inspect the logs.
+  blue-team-ssh:
+    build:
+      context: .
+      dockerfile: ssh/Dockerfile
+    container_name: blue-team-ssh
+    ports:
+      - "2275:22"
+    volumes:
+      - admin-logs:/opt/admin/logs:ro
+    networks:
+      - lab-net
+    restart: unless-stopped
+
+volumes:
+  admin-logs:
+
+networks:
+  lab-net:
+    driver: bridge

@@ -1,0 +1,13 @@
+{
+  "name": "feedback-admin-system",
+  "version": "1.0.0",
+  "description": "Intentionally vulnerable Admin Feedback System - Cyber Range Lab (Scenario 75: Cookie Reuse & MFA Bypass)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "cookie-parser": "^1.4.6"
+  }
+}
