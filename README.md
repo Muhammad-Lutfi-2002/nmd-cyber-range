@@ -1,1 +1,0 @@
-# nmd-cyber-range
